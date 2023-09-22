@@ -63,7 +63,8 @@ class videojsXBlock(XBlock):
         """
         resource_content = pkg_resources.resource_string(
             __name__, resource_path)
-        return resource_content
+        # return unicode(resource_content, 'utf-8')
+        return resource_content.decode('utf-8')
 
     def render_template(self, template_path, context={}):
         """
