@@ -1,1 +1,1 @@
-from .videojs import videojsXBlock
+from .plyr import plyrXBlock
