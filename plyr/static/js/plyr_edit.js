@@ -1,5 +1,5 @@
-/* Javascript for videojsXBlock. */
-function videojsXBlockInitStudio(runtime, element) {
+/* Javascript for plyrXBlock. */
+function plyrXBlockInitStudio(runtime, element) {
 
     $(element).find('.action-cancel').bind('click', function() {
         runtime.notify('cancel', {});
@@ -18,7 +18,7 @@ function videojsXBlockInitStudio(runtime, element) {
         
         runtime.notify('save', {state: 'start'});
         
-        var handlerUrl = runtime.handlerUrl(element, 'save_videojs');
+        var handlerUrl = runtime.handlerUrl(element, 'save_plyr');
         $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
             if (response.result === 'success') {
                 runtime.notify('save', {state: 'end'});

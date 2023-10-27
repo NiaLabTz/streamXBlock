@@ -1,4 +1,4 @@
-"""Setup for videojsXBlock."""
+"""Setup for plyrXBlock."""
 
 import os
 from setuptools import setup
@@ -15,19 +15,19 @@ def package_data(pkg, root):
 
 
 setup(
-    name='videojs-xblock',
+    name='plyr-xblock',
     version='0.1',
-    description='XBlock to use the Video.js player in edX, instead of the default one.',
+    description='XBlock to use the Plyr player in edX, instead of the default one.',
     packages=[
-        'videojs',
+        'plyr',
     ],
     install_requires=[
         'XBlock',
     ],
     entry_points={
         'xblock.v1': [
-            'videojs = videojs:videojsXBlock',
+            'plyr = plyr:plyrXBlock',
         ]
     },
-    package_data=package_data("videojs", "static"),
+    package_data=package_data("plyr", "static"),
 )

@@ -1,4 +1,4 @@
-""" videojsXBlock main Python class"""
+""" plyrXBlock main Python class"""
 
 import pkg_resources
 from django.template import Context, Template
@@ -8,7 +8,7 @@ from xblock.fields import Scope, Integer, String, Boolean
 from xblock.fragment import Fragment
 
 
-class videojsXBlock(XBlock):
+class plyrXBlock(XBlock):
 
     '''
     Icon of the XBlock. Values : [other (default), video, problem]
@@ -19,7 +19,7 @@ class videojsXBlock(XBlock):
     Fields
     '''
     display_name = String(display_name="Display Name",
-                          default="Video JS",
+                          default="Video",
                           scope=Scope.settings,
                           help="This name appears in the horizontal navigation at the top of the page.")
 
@@ -98,18 +98,18 @@ class videojsXBlock(XBlock):
             'source_url': self.source_url
         }
 
-        html = self.render_template('static/html/videojs_view.html', context)
+        html = self.render_template('static/html/plyr_view.html', context)
 
         frag = Fragment(html)
-        frag.add_css(self.load_resource("static/css/videojs.css"))
+        frag.add_css(self.load_resource("static/css/plyr.css"))
 
         '''
-        No need to load dash.all.min.js as I have already added it from cdn in videojs_view.html
+        No need to load dash.all.min.js as I have already added it from cdn in plyr_view.html
         frag.add_javascript(self.load_resource("static/js/dash.all.debug.js"))
         <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
         '''
-        frag.add_javascript(self.load_resource("static/js/videojs_view.js"))
-        frag.initialize_js('videojsXBlockInitView')
+        frag.add_javascript(self.load_resource("static/js/plyr_view.js"))
+        frag.initialize_js('plyrXBlockInitView')
         return frag
 
     def studio_view(self, context=None):
@@ -126,15 +126,15 @@ class videojsXBlock(XBlock):
             'start_time': self.start_time,
             'end_time': self.end_time
         }
-        html = self.render_template('static/html/videojs_edit.html', context)
+        html = self.render_template('static/html/plyr_edit.html', context)
 
         frag = Fragment(html)
-        frag.add_javascript(self.load_resource("static/js/videojs_edit.js"))
-        frag.initialize_js('videojsXBlockInitStudio')
+        frag.add_javascript(self.load_resource("static/js/plyr_edit.js"))
+        frag.initialize_js('plyrXBlockInitStudio')
         return frag
 
     @XBlock.json_handler
-    def save_videojs(self, data, suffix=''):
+    def save_plyr(self, data, suffix=''):
         """
         The saving handler.
         """
