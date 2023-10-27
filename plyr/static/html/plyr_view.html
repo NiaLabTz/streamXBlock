@@ -10,9 +10,7 @@
         }
     </style>
     <h2>{{ display_name }}</h2>
-    <video id="video-player" class="plyr w-full" preload="auto" controls width="100%" height="400">
-            <source src="{{ url }}" type="application/x-mpegURL" />
-    </video>
+    <video id="video-player" class="plyr w-full" controls width="100%" height="400"></video>
     {% if allow_download or source_url != "" %}
     <ul>
         {% if allow_download %}
@@ -30,14 +28,9 @@
     {% endif %}
 </div>
 <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.3/hls.min.js"></script>
 <script>
-	const player = new Plyr(document.getElementById('video-player'), {
-			title: {{display_name}},
-			settings: ['quality', 'speed', 'loop'] 
-		});
-        player.play();
-
-        let head = document.getElementsByTagName('HEAD')[0];
+	let head = document.getElementsByTagName('HEAD')[0];
         let link = document.createElement('link');
 
         link.rel = 'stylesheet';
@@ -45,4 +38,29 @@
         link.href = 'https://cdn.plyr.io/3.7.8/plyr.css'
 
         head.appendChild(link);
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const source = {{ url }};
+
+		const video = document.getElementById('video-player');
+	
+		// For more options see: https://github.com/sampotts/plyr/#options
+		const player = new Plyr(video, {
+			settings: ['quality', 'speed', 'loop']
+		});
+	
+		if (!Hls.isSupported()) {
+			video.src = source;
+		} else {
+		// For more Hls.js options, see https://github.com/dailymotion/hls.js
+			const hls = new Hls();
+			hls.loadSource(source);
+			hls.attachMedia(video);
+			window.hls = hls;
+		}
+	
+		// Expose player so it can be used from the console
+		window.player = player;
+
+	});
 </script>
