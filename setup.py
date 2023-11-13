@@ -1,4 +1,4 @@
-"""Setup for plyrXBlock."""
+"""Setup for streamXBlock."""
 
 import os
 from setuptools import setup
@@ -15,19 +15,19 @@ def package_data(pkg, root):
 
 
 setup(
-    name='plyr-xblock',
+    name='stream-xblock',
     version='0.1',
-    description='XBlock to use the Plyr player in edX, instead of the default one.',
+    description='XBlock to use the stream player in edX, instead of the default one.',
     packages=[
-        'plyr',
+        'stream',
     ],
     install_requires=[
         'XBlock',
     ],
     entry_points={
         'xblock.v1': [
-            'plyr = plyr:plyrXBlock',
+            'stream = stream:streamXBlock',
         ]
     },
-    package_data=package_data("plyr", "static"),
+    package_data=package_data("stream", "static"),
 )
