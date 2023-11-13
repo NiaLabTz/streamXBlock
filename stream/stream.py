@@ -24,7 +24,7 @@ class streamXBlock(XBlock):
                           help="This name appears in the horizontal navigation at the top of the page.")
 
     url = String(display_name="Iframe URL",
-                 default="https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd",
+                 default="https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU.m3u8",
                  scope=Scope.content,
                  help="The Iframe URL for your video.")
     '''

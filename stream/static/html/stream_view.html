@@ -1,19 +1,24 @@
 <div class="stream_block">
-    <!-- <style scoped>
-
-        .w-full {
-                width: 100%
-        }
-    </style> -->
-
-	<iframe
-		src="{{ url }}"
-		style="border: none;  border-radius: 12px; box-shadow: 0 .5px .6px hsl(var(--shadow-color)/.36),0 1.7px 1.9px -.8px hsl(var(--shadow-color)/.36),0 4.3px 4.8px -1.7px hsl(var(--shadow-color)/.36),-.1px 10.6px 11.9px -2.5px hsl(var(--shadow-color)/.36);"
-		height="720"x
-		width="100%"
-		primaryColor="#4FD2C2"
-		preload="metadata"
-		allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-		allowfullscreen="true"
-></iframe>
+	<media-player title="{{ display_name }}" src="{{ url }}">
+		<media-provider></media-provider>
+	  </media-player>
 </div>
+<script
+  src="https://cdn.jsdelivr.net/npm/vidstack@^1.0.0/cdn/with-layouts/vidstack.js"
+  type="module"
+></script>
+<script>
+	const head = document.getElementByTagName('HEAD')[0];
+
+	const themeStylesheet = document.createElement('link');
+	const layoutStylesheet = document.createElement('link');
+
+	themeStylesheet.rel = 'stylesheet';
+	layoutStylesheet.rel = 'stylesheet';
+
+	themeStylesheet.href = 'https://cdn.jsdelivr.net/npm/vidstack@^1.0.0/player/styles/default/theme.min.css';
+	layoutStylesheet.href = 'https://cdn.jsdelivr.net/npm/vidstack@^1.0.0/player/styles/default/layouts/video.min.css';
+
+	head.appendChild(themeStylesheet);
+	head.appendChild(layoutStylesheet);
+</script>
