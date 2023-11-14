@@ -9,6 +9,7 @@ function streamXBlockInitStudio(runtime, element) {
         var data = {
             'display_name': $('#stream_edit_display_name').val(),
             'url': $('#stream_edit_url').val(),
+            'thumbnail_url': $('#stream_edit_thumbnail_url').val(),
         };
         
         runtime.notify('save', {state: 'start'});

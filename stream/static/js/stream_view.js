@@ -1,5 +1,5 @@
 /* Javascript for plyrXBlock. */
-function plyrXBlockInitView(runtime, element) {
+function streamXBlockInitView(runtime, element) {
     /* Weird behaviour :
      * In the LMS, element is the DOM container.
      * In the CMS, element is the jQuery object associated*

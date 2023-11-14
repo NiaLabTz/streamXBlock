@@ -19,14 +19,19 @@ class streamXBlock(XBlock):
     Fields
     '''
     display_name = String(display_name="Display Name",
-                          default="Video",
+                          default="Stream",
                           scope=Scope.settings,
                           help="This name appears in the horizontal navigation at the top of the page.")
 
-    url = String(display_name="Iframe URL",
+    url = String(display_name="URL",
                  default="https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU.m3u8",
                  scope=Scope.content,
-                 help="The Iframe URL for your video.")
+                 help="The URL of your video.")
+
+    thumbnail_url = String(display_name="Thumbnail URL",
+                 default="",
+                 scope=Scope.content,
+                 help="The Thumbnail URL of your video.")
     '''
     Util functions
     '''
@@ -60,6 +65,7 @@ class streamXBlock(XBlock):
         context = {
             'display_name': self.display_name,
             'url': self.url,
+            'thumbnail_url': self.thumbnail_url,
         }
 
         html = self.render_template('static/html/stream_view.html', context)
@@ -84,6 +90,7 @@ class streamXBlock(XBlock):
         context = {
             'display_name': self.display_name,
             'url': self.url,
+            'thumbnail_url': self.thumbnail_url,
         }
         html = self.render_template('static/html/stream_edit.html', context)
 
@@ -99,6 +106,7 @@ class streamXBlock(XBlock):
         """
         self.display_name = data['display_name']
         self.url = data['url']
+        self.thumbnail_url = data['thumbnail_url']
 
         return {
             'result': 'success',
